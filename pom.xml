@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ymiyun</groupId>
+  <artifactId>fdfs-java-client-demo</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>mvc</name>
+  <url>http://www.oatos.com</url>
+
+  <properties>
+		<java-version>1.7</java-version>
+		<maven.test.skip>true</maven.test.skip>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.csource</groupId>
+			<artifactId>fastdfs</artifactId>
+			<version>1.24</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/fastdfs_client_v1.24.jar
+			</systemPath>
+		</dependency>
+
+	</dependencies>
+  
+	<build>
+		<finalName>oatos-mvc</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>
