@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.csource.common.MyException;
 import org.csource.fastdfs.ClientGlobal;
+import org.csource.fastdfs.FileInfo;
 import org.csource.fastdfs.StorageClient;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
@@ -22,7 +24,7 @@ public class App {
 		}
 	}
 
-	public static final StorageClient getStorageClient() throws IOException {
+	private static final StorageClient getStorageClient() throws IOException {
 		try {
 			if (tracker == null) {
 				tracker = new TrackerClient();
@@ -41,25 +43,32 @@ public class App {
 		try {
 			String file = "d:/test.jpg";
 			
-			String r1 = test_upload(file);
-			System.out.println(r1);
+//			String r1 = test_upload(file);
+//			System.out.println(r1);
+//			
+//			String r2 = test_append(file);
+//			System.out.println(r2);
+//			
+//			String r3 = test_modify(file);
+//			System.out.println(r3);
 			
-			String r2 = test_append(file);
-			System.out.println(r2);
-			
-			String r3 = test_modify(file);
-			System.out.println(r3);
+			test_fileinfo();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
+	
+	private static void test_fileinfo() throws Exception {
+		FileInfo f = getStorageClient().get_file_info("group1", "M00/00/0C/wKgBeFXclx2AMt8jAAPm5H9JxDA307.jpg");
+		System.out.println("crc32:" + f.getCrc32());
+	}
 
-	public static String test_upload(String file) throws Exception {
+	private static String test_upload(String file) throws Exception {
 		String[] r = getStorageClient().upload_file(file, null, null);
 		return r[0] + "/" + r[1];
 	}
 
-	public static String test_append(String filePath) throws Exception {
+	private static String test_append(String filePath) throws Exception {
 		int blockSize = 10 * 1024;
 		File file = new File(filePath);
 		long fileSize = file.length();
@@ -95,7 +104,7 @@ public class App {
 		return group_name + "/" + appender_filename;
 	}
 
-	public static String test_modify(String filePath) throws Exception {
+	private static String test_modify(String filePath) throws Exception {
 		int blockSize = 10 * 1024;
 		File file = new File(filePath);
 		long fileSize = file.length();
