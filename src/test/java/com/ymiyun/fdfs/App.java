@@ -43,8 +43,8 @@ public class App {
 		try {
 			String file = "d:/test.jpg";
 			
-//			String r1 = test_upload(file);
-//			System.out.println(r1);
+			String r1 = test_upload(file);
+			System.out.println(r1);
 //			
 //			String r2 = test_append(file);
 //			System.out.println(r2);
@@ -52,14 +52,14 @@ public class App {
 //			String r3 = test_modify(file);
 //			System.out.println(r3);
 			
-			test_fileinfo();
+//			test_fileinfo();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
 	private static void test_fileinfo() throws Exception {
-		FileInfo f = getStorageClient().get_file_info("group1", "M00/00/0C/wKgBeFXclx2AMt8jAAPm5H9JxDA307.jpg");
+		FileInfo f = getStorageClient().get_file_info("group1", "M00/00/00/wKgBDFZCs5-ERc43AAAAAA_VA2E036.jpg");
 		System.out.println("crc32:" + f.getCrc32());
 	}
 
