@@ -4,10 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.csource.common.MyException;
 import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.FileInfo;
 import org.csource.fastdfs.StorageClient;
+import org.csource.fastdfs.StructGroupStat;
+import org.csource.fastdfs.StructStorageStat;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
 
@@ -43,8 +44,8 @@ public class App {
 		try {
 			String file = "d:/test.jpg";
 			
-			String r1 = test_upload(file);
-			System.out.println(r1);
+//			String r1 = test_upload(file);
+//			System.out.println(r1);
 //			
 //			String r2 = test_append(file);
 //			System.out.println(r2);
@@ -53,9 +54,25 @@ public class App {
 //			System.out.println(r3);
 			
 //			test_fileinfo();
+			
+			listGrous();
+			
+			listStorages();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	private static void listGrous() throws Exception {
+		getStorageClient();
+		StructGroupStat[] list = tracker.listGroups(trackerServer);
+		System.out.println(Json.toJson(list));
+	}
+	
+	private static void listStorages() throws Exception {
+		getStorageClient();
+		StructStorageStat[] list = tracker.listStorages(trackerServer, "group1");
+		System.out.println(Json.toJson(list));
 	}
 	
 	private static void test_fileinfo() throws Exception {
